@@ -1,68 +1,156 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# football-match
 
-## Available Scripts
+축구, 풋살 구장 예약 및, 매칭을 위한 어플이다. 
 
-In the project directory, you can run:
+## 개요 
 
-### `npm start`
+아마추어 체육이 활성화 되면서 축구를 비롯한 여러 체육활동 인구가 증가하고 있다.
+축구와 풋살의 경우 상대팀과의 경기를 통해 흥미와 보람을 얻으면서 실력을 평가하고자 하는 팀들이 많다.
+하지만 현재는 활성화 된 매칭 시스템이 존재하지 않아 상대팀과의 경기를 잡는 데에 수많은 불편함이 있다.
+예를 들어 구장을 예약하고 상대팀을 구하지못해 구장비를 내고도 매치를 하지 못하는 일이 일어나거나, 실력차이가 많이나는 상대와 경기를 해 전혀 재미와 보람을 느끼지 못하고 자존심만 잃고 오는 팀도 있다.
+알맞은 상대와 매치하기 위해 할애하는 시간이 많아 굉장히 불편한 현실이다. 심지어 구장비 선입금을 노리는 사기 행각이 발견되기도 했다.
+이에 아마추어 매칭 플랫폼을 개발하여 이러한 불편함을 보완하고자 한다.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## 개발 가이드
 
-### `npm test`
+개발시 준수해야할 점에 대한 가이드입니다.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 개인 개발은 개인 `feature 브랜치`를 만들어 개발해주세요.
+- 기능개발이 끝나면 `develop 브랜치`에 merge 후 push 해주세요.
+- push하기 전에는 `conflict`를 해결하기 위해 pull를 하시고 push 해주세요.
+- `master 브랜치`에서는 작업하지 말아주세요.
 
-### `npm run build`
+목차입니다. 필요한 부분을 링크 타고 들어가서 읽어주세요.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. [컴포넌트 분할](#1.-컴포넌트-분할)
+2. [폴더 설명](#2.-폴더-설명)
+3. [네이밍 규칙](#3.-네이밍-규칙)
+4. [svg 파일 관리](#4.-svg-파일-관리)
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 1. 컴포넌트 분할
 
-### `npm run eject`
+컴포넌트는 성격에 따라 분할하며 분할 기준은 다음과 같습니다.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Page Component
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  Path 경로가 되는 컴포넌트입니다. (ex. `/home`, `/list`, `/reserve`)
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Container Component
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+  상태나 통신을 하는 컴포넌트입니다. 이 컴포넌트에서는 사용자에게 보여지는 레이아웃등의 형태는 다루지 않습니다.
 
-## Learn More
+- Presentational Component
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  뷰(레이아웃)을 그리는 컴포넌트입니다. 이 컴포넌트에서는 통신을 하지 않고 제어되는 컴포넌트와 같이 불가피한 경우를 제외하고는 상태를 가지지 않습니다.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Context Component
 
-### Code Splitting
+  이 컴포넌트는 넓고 깊은 범위에서 사용되어야 하는 상태, 속성이 있을때 사용하는 컴포넌트입니다. 예를 들어 로그인된 상태를 알아야하는 경우, 계정 정보를 알아야 하는 경우 등이 있을 수 있습니다.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+- hoc
 
-### Analyzing the Bundle Size
+  이 컴포넌트는 로딩인디케이터와 같이, 어떤 컴포넌트를 받아서 컴포넌트를 반환할 때 사용됩니다.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+---
 
-### Making a Progressive Web App
+### 2. 폴더 설명
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+저장소의 폴더 구성은 다음과 같습니다.
 
-### Advanced Configuration
+#### src
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+**파일**
 
-### Deployment
+- `App.js`
+- `index.js`
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+**폴더**
 
-### `npm run build` fails to minify
+- `components`: view를 담당하는 Presentational Component와 해당 컴포넌트에 대한 scss파일을 담는 폴더입니다.
+- `containers`: 정보의 통신과 상태를 관리하는 Container Component를 담는 폴더입니다.
+- `contexts`: 상태 공유를 위한 context api 컴포넌트를 담는 폴더입니다.
+- `css`: normalized css, reset css, 전역에서 관리되어야 하는 변수, 스타일 등이 설정된 scss파일을 담는 폴더입니다. 이 외의 scss파일은 담지 않는것을 권장합니다.
+- `hoc`: 고차 컴포넌트를 담는 폴더입니다.
+- `pages`: 페이지(경로)가 되는 컴포넌트를 담는 폴더입니다. 예를들어 `HomePage.js`, `ListPage.js` 등이 담길 수 있습니다.
+- `svg`: 아이콘, 로고의 파일을 담는 폴더입니다.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+---
+
+### 3. 네이밍 규칙
+
+네이밍은 팀원들이 회의하여 결정하도록 합니다. 아래는 예시일 뿐이며, 해당 네이밍을 따른다는 의미가 아닙니다.
+
+- Container Component
+
+  다음과 같이 네이밍합니다.
+
+  `Home.js`, `List.js`, `Reserve.js`
+
+- Presentational Component
+
+  어미에 `View`를 붙여 네이밍합니다.
+
+  `HomeView.js`, `ListView.js`, `ReserveView.js`, 
+
+- Page Component
+
+  어미에 `Page`를 붙여 네이밍합니다.
+
+  `HomePage.js`, `ListPage.js`, `LoginPage.js`
+
+- Scss
+
+  Container Component의 이름을 따르되, 저장은 Presentational Component에 합니다.
+
+  `HomePage.module.scss`, `ReservePage.module.scss`
+
+---
+
+### 4. svg 파일 관리
+
+svg파일을 생성하는 방법은 두가지입니다.
+
+- 직접 일러스트레이터 툴로 svg파일을 만든다.
+
+- 에어비앤비 홈페이지 개발자 도구에서 svg태그를 복사하고 붙여넣기 한다.
+
+에어비엔비 홈페이지에서 긁어올 경우 다음과 같은 정차를 따릅니다.
+
+1. `svg`폴더에 `아이콘이름.svg`로 저장하고 내용을 긁어온 svg태그로 채워 넣습니다. svg태그 내에 있는 `style`과 같은 속성을 모두 빼주어야 합니다
+
+```html
+<!-- style속성을 부여하면 커스텀 스타일을 먹이기 힘듭니다. -->
+<svg
+  viewBox="0 0 18 18"
+  role="img"
+  aria-label="다음"
+  focusable="false"
+  style="height: 24px; width: 24px; display: block; fill: currentcolor;"
+>
+  <path
+    d="m4.29 1.71a1 1 0 1 1 1.42-1.41l8 8a1 1 0 0 1 0 1.41l-8 8a1 1 0 1 1 -1.42-1.41l7.29-7.29z"
+    fill-rule="evenodd"
+  ></path>
+</svg>
+
+<!-- 속성을 삭제하고 사용해주세요. -->
+<svg viewBox="0 0 18 18">
+  <path
+    d="m4.29 1.71a1 1 0 1 1 1.42-1.41l8 8a1 1 0 0 1 0 1.41l-8 8a1 1 0 1 1 -1.42-1.41l7.29-7.29z"
+  />
+</svg>
+```
+
+2. import할 때는 다음과 같이 import 해주세요.
+
+```js
+// 파일 상단 IMPORT
+import { ReactComponent as Star } from '../svg/star.svg';
+
+// 컴포넌트로서 svg 아이콘을 불러옵니다.
+<Star className={style.star} />;
+```
